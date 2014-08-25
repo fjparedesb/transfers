@@ -4,7 +4,8 @@
  * This is the model class for table "tbl_user".
  *
  * The followings are the available columns in table 'tbl_user':
- * @property string $id
+ * @property string $idusuario
+ * @property string $idcia
  * @property string $email
  * @property string $password
  * @property string $nombre
@@ -41,7 +42,7 @@ class User extends CActiveRecord
 			array('fecha_alta, fecha_upd', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, email, password, nombre, apellido, estatus, fecha_alta, hora_alta, fecha_upd, hora_upd', 'safe', 'on'=>'search'),
+			array('idusuario, idcia, email, password, nombre, apellido, estatus, fecha_alta, hora_alta, fecha_upd, hora_upd', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,7 +63,8 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
+			'idusuario' => 'Idusuario',
+			'idcia' => 'IdCia',
 			'email' => 'Email',
 			'password' => 'Password',
 			'nombre' => 'Nombre',
@@ -93,7 +95,8 @@ class User extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
+		$criteria->compare('idusuario',$this->idusuario,true);
+		$criteria->compare('idcia',$this->idcia,true);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('nombre',$this->nombre,true);
@@ -109,17 +112,7 @@ class User extends CActiveRecord
 		));
 	}
 	
-	public function behaviors()
-	{
-		return array(
-		'CTimestampBehavior' => array(
-		'class' => 'zii.behaviors.CTimestampBehavior',
-		'createAttribute' => 'fecha_alta',
-		'updateAttribute' => 'fecha_upd',
-		'setUpdateOnCreate' => true,
-		),
-		);
-	}
+	
 
 	/**
 	 * Returns the static model of the specified AR class.
