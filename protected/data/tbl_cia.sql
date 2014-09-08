@@ -1,0 +1,23 @@
+CREATE TABLE `tbl_cia` (
+  `idcia` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(200) NOT NULL,
+  `calle` varchar(100) NOT NULL,
+  `colonia` varchar(45) NOT NULL,
+  `numeroint` varchar(4) NOT NULL,
+  `numeroext` varchar(4) NOT NULL,
+  `cp` varchar(8) NOT NULL,
+  `rfc` varchar(20) NOT NULL,
+  `ciudad` varchar(45) NOT NULL,
+  `idestado` varchar(3) NOT NULL,
+  `idpais` varchar(3) NOT NULL,
+  `estatus` varchar(1) NOT NULL DEFAULT 'A',
+  `usralta` bigint(20) NOT NULL,
+  `fecha_alta` date NOT NULL,
+  `hora_alta` varchar(8) NOT NULL,
+  `usrupd` bigint(20) NOT NULL,
+  `fecha_upd` date NOT NULL,
+  `hora_upd` varchar(8) NOT NULL,
+  PRIMARY KEY (`idcia`),
+  KEY `fk_tbl_cia_tbl_estados_idx` (`idpais`,`idestado`),
+  CONSTRAINT `fk_tbl_cia_tbl_estados` FOREIGN KEY (`idpais`, `idestado`) REFERENCES `tbl_estados` (`idpais`, `idestado`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
